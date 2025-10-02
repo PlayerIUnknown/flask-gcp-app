@@ -1,0 +1,21 @@
+steps:
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: 'gcloud'
+  args:
+    - 'compute'
+    - 'ssh'
+    - 'g0xakash_singh@web-server-01' # Your user@vm-name
+    - '--zone=asia-south2-a'
+    - '--command'
+    - |
+        # Step 1: Navigate to the app directory
+        cd ~/flask-gcp-app
+
+        # Step 2: Pull the latest code from the main branch
+        git pull origin main
+
+        # Step 3: Install any new dependencies
+        /home/g0xakash_singh/gcp/bin/pip install -r requirements.txt
+
+        # Step 4: Restart the app service to apply changes
+        sudo systemctl restart myapp
