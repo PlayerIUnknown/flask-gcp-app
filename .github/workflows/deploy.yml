@@ -46,4 +46,4 @@ jobs:
 
       # Step 6: Trigger the Cloud Build pipeline
       - name: 'Trigger Google Cloud Build'
-        run: 'gcloud builds triggers run deploy-to-vm-on-push --branch=main'
+        run: 'gcloud builds triggers run deploy-to-vm-on-push --branch=main --region=asia-south2'
