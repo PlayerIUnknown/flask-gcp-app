@@ -361,7 +361,7 @@ DASHBOARD_TEMPLATE = """
 
 @app.route("/")
 def hello_world():
-    return "<h1>Hello, Google Cloud! Your application (+ CI/CD) is live!!!!</h1>"
+    return "<h1>Hello, Google Cloud! Your application (+ CI/CD) is live!</h1>"
 
 
 @app.route("/dashboard")
