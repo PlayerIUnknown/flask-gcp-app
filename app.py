@@ -211,14 +211,14 @@ DASHBOARD_TEMPLATE = """
 <body>
     <div class="container">
         <div class="header">
-            <h1>🚀 Flask GCP Infrastructure Dashboard</h1>
+            <h1>Flask GCP Infrastructure Dashboard</h1>
             <p>Real-time monitoring of your deployment pipeline and system performance</p>
         </div>
         
         <div class="dashboard-grid">
             <!-- System Performance -->
             <div class="card">
-                <h3>🖥️ System Performance</h3>
+                <h3>System Performance</h3>
                 <div class="metric">
                     <span class="metric-label">CPU Usage</span>
                     <span class="metric-value">{{ cpu_percent }}%</span>
@@ -251,7 +251,7 @@ DASHBOARD_TEMPLATE = """
             
             <!-- System Information -->
             <div class="card">
-                <h3>ℹ️ System Information</h3>
+                <h3>System Information</h3>
                 <div class="metric">
                     <span class="metric-label">Hostname</span>
                     <span class="metric-value">{{ hostname }}</span>
@@ -276,7 +276,7 @@ DASHBOARD_TEMPLATE = """
             
             <!-- Network Information -->
             <div class="card">
-                <h3>🌐 Network Information</h3>
+                <h3>Network Information</h3>
                 <div class="metric">
                     <span class="metric-label">Internal IP</span>
                     <span class="metric-value">{{ internal_ip }}</span>
@@ -297,7 +297,7 @@ DASHBOARD_TEMPLATE = """
             
             <!-- Service Status -->
             <div class="card">
-                <h3>⚙️ Service Status</h3>
+                <h3>Service Status</h3>
                 <div class="metric">
                     <span class="metric-label">
                         <span class="status-indicator status-running"></span>Flask App
@@ -324,7 +324,7 @@ DASHBOARD_TEMPLATE = """
             
             <!-- Deployment Pipeline -->
             <div class="card deployment-info">
-                <h3>🚀 CI/CD Pipeline</h3>
+                <h3>CI/CD Pipeline</h3>
                 <div class="deployment-step">
                     <strong>1. Code Repository</strong><br>
                     <small>Git repository connected to Cloud Build</small>
@@ -348,7 +348,7 @@ DASHBOARD_TEMPLATE = """
             </div>
         </div>
         
-        <button class="refresh-btn" onclick="location.reload()">🔄 Refresh Dashboard</button>
+        <button class="refresh-btn" onclick="location.reload()">Refresh Dashboard</button>
         
         <div class="timestamp">
             Last updated: {{ current_time }}
