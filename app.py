@@ -358,64 +358,70 @@ DASHBOARD_TEMPLATE = """
 </html>
 """
 
-@app.route('/')
-def hello_world():
-    return '<h1>Hello, Google Cloud! Your application (+ CI/CD) is live!!!!</h1>'
 
-@app.route('/dashboard')
+@app.route("/")
+def hello_world():
+    return "<h1>Hello, Google Cloud! Your application (+ CI/CD) is live!!!!</h1>"
+
+
+@app.route("/dashboard")
 def dashboard():
     """Comprehensive infrastructure and performance dashboard"""
-    
+
     # System performance metrics
     cpu_percent = psutil.cpu_percent(interval=1)
     memory = psutil.virtual_memory()
-    disk = psutil.disk_usage('/')
-    load_avg = os.getloadavg()[0] if hasattr(os, 'getloadavg') else 'N/A'
-    
+    disk = psutil.disk_usage("/")
+    load_avg = os.getloadavg()[0] if hasattr(os, "getloadavg") else "N/A"
+
     # System information
     hostname = socket.gethostname()
     platform_info = f"{platform.system()} {platform.release()}"
     python_version = platform.python_version()
-    
+
     # Network information
     internal_ip = socket.gethostbyname(hostname)
-    
+
     # Get network I/O
     net_io = psutil.net_io_counters()
-    network_io = f"↑{net_io.bytes_sent // (1024*1024)}MB ↓{net_io.bytes_recv // (1024*1024)}MB"
-    
+    network_io = (
+        f"↑{net_io.bytes_sent // (1024*1024)}MB ↓{net_io.bytes_recv // (1024*1024)}MB"
+    )
+
     # GCP specific information (from cloudbuild.yaml)
     gcp_zone = "asia-south2-a"
     vm_name = "web-server-01"
-    
+
     # Service status simulation (in real deployment, you'd check actual service status)
     active_connections = len(psutil.net_connections())
-    
+
     # Get Flask version
     try:
         import flask
+
         flask_version = flask.__version__
     except:
         flask_version = "Unknown"
-    
+
     # Get uptime
     boot_time = psutil.boot_time()
     uptime_seconds = psutil.time.time() - boot_time
     uptime_hours = int(uptime_seconds // 3600)
     uptime_minutes = int((uptime_seconds % 3600) // 60)
     uptime = f"{uptime_hours}h {uptime_minutes}m"
-    
+
     # Current time
     current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S UTC")
-    
+
     # Last deploy time (simulated - in real scenario, you'd get this from git or deployment logs)
     last_deploy = "Just now"  # This could be enhanced to read from git logs or deployment metadata
-    
-    return render_template_string(DASHBOARD_TEMPLATE,
+
+    return render_template_string(
+        DASHBOARD_TEMPLATE,
         cpu_percent=cpu_percent,
         memory_percent=memory.percent,
         disk_percent=disk.percent,
-        load_avg=round(load_avg, 2) if load_avg != 'N/A' else 'N/A',
+        load_avg=round(load_avg, 2) if load_avg != "N/A" else "N/A",
         hostname=hostname,
         platform=platform_info,
         python_version=python_version,
@@ -427,19 +433,23 @@ def dashboard():
         network_io=network_io,
         active_connections=active_connections,
         last_deploy=last_deploy,
-        current_time=current_time
+        current_time=current_time,
     )
 
-@app.route('/api/metrics')
+
+@app.route("/api/metrics")
 def api_metrics():
     """API endpoint for real-time metrics (for potential future enhancements)"""
-    return jsonify({
-        'cpu_percent': psutil.cpu_percent(),
-        'memory_percent': psutil.virtual_memory().percent,
-        'disk_percent': psutil.disk_usage('/').percent,
-        'timestamp': datetime.now().isoformat()
-    })
+    return jsonify(
+        {
+            "cpu_percent": psutil.cpu_percent(),
+            "memory_percent": psutil.virtual_memory().percent,
+            "disk_percent": psutil.disk_usage("/").percent,
+            "timestamp": datetime.now().isoformat(),
+        }
+    )
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     # Run the app on all available network interfaces (0.0.0.0) on port 80
-    app.run(host='0.0.0.0', port=8080)
+    app.run(host="0.0.0.0", port=8080)
