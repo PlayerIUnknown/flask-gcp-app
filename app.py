@@ -26,7 +26,7 @@ DASHBOARD_TEMPLATE = """
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             min-height: 100vh;
             padding: 20px;
         }
@@ -39,34 +39,36 @@ DASHBOARD_TEMPLATE = """
         .header {
             text-align: center;
             color: white;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
         
         .header h1 {
             font-size: 2.5rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-weight: 700;
         }
         
         .header p {
             font-size: 1.2rem;
-            opacity: 0.9;
+            opacity: 0.8;
+            color: #b0b0b0;
         }
         
         .dashboard-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
             margin-bottom: 30px;
         }
         
         .card {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(42, 42, 74, 0.8);
             border-radius: 15px;
             padding: 25px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
@@ -76,10 +78,10 @@ DASHBOARD_TEMPLATE = """
         }
         
         .card h3 {
-            color: #333;
+            color: #ffffff;
             margin-bottom: 15px;
             font-size: 1.4rem;
-            border-bottom: 2px solid #667eea;
+            border-bottom: 2px solid #9c88ff;
             padding-bottom: 8px;
         }
         
@@ -87,9 +89,9 @@ DASHBOARD_TEMPLATE = """
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
+            margin-bottom: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .metric:last-child {
@@ -98,12 +100,12 @@ DASHBOARD_TEMPLATE = """
         
         .metric-label {
             font-weight: 500;
-            color: #555;
+            color: #b0b0b0;
         }
         
         .metric-value {
             font-weight: 600;
-            color: #667eea;
+            color: #9c88ff;
         }
         
         .status-indicator {
@@ -131,24 +133,25 @@ DASHBOARD_TEMPLATE = """
         
         .progress-bar {
             width: 100%;
-            height: 20px;
-            background-color: #e0e0e0;
-            border-radius: 10px;
+            height: 6px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
             overflow: hidden;
             margin-top: 5px;
         }
         
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #4CAF50, #8BC34A);
-            border-radius: 10px;
+            background: linear-gradient(90deg, #9c88ff, #7c4dff);
+            border-radius: 3px;
             transition: width 0.3s ease;
         }
         
         .deployment-info {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
             color: white;
             grid-column: 1 / -1;
+            border: 1px solid rgba(156, 136, 255, 0.3);
         }
         
         .deployment-info h3 {
@@ -157,15 +160,15 @@ DASHBOARD_TEMPLATE = """
         }
         
         .deployment-step {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05);
             border-radius: 8px;
             padding: 15px;
             margin-bottom: 10px;
-            border-left: 4px solid #4CAF50;
+            border-left: 4px solid #9c88ff;
         }
         
         .refresh-btn {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #9c88ff, #7c4dff);
             color: white;
             border: none;
             padding: 12px 24px;
